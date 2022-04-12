@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNet.Identity
+<header id="header">
+    <!--header-->
+    <div class="header-middle">
+        <!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 clearfix">
+                    <div class="logo pull-left">
+                        <a href="/Home/Index"><img src="~/images/home/Logo.png" alt="" width="450px" height="104px" style="object-fit: cover"/></a>
+                    </div>
+
+                </div>
+                <div class="col-md-8 clearfix">
+                    <div class="shop-menu clearfix pull-right">
+                        <ul class="nav navbar-nav">
+                            @{ Html.RenderAction("ViewCart", "Home");}
+                            @Html.Partial("_LoginPartial")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header-middle-->
+
+    <div class="header-bottom">
+        <!--header-bottom-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="mainmenu pull-left">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li><a href="/Home/Index">Trang chủ</a></li>
+                            <li><a href="/Item">Sản phẩm</a></li>
+                            @*<li><a href="#">Promotions</a></li>*@
+                            <li><a href="/Contact/Index">Liên hệ</a></li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a href="/Admin/HomeAdmin" class="nav-link">Admin</a>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="search_box pull-right">
+                        @using (Html.BeginForm("Index", "Item", FormMethod.Get))
+                        {
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" name="search" placeholder="Tìm kiếm...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div><!--/header-bottom-->
+</header>

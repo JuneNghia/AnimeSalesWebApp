@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section slide
+    {
+    @{ Html.RenderAction("Slide");}
+}
+
+
+<div class="features_items">
+  
+    @{ Html.RenderAction("NewItem");}
+
+</div>
+
+<div class="features_items">
+    <!--features_items-->
+    @{ Html.RenderAction("FuaturesItem");}
+
+</div>
+<!--end book hot-->

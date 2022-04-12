@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | Takashi Shop</title>
+    <link rel="shortcut icon" href="~/images/home-icon.png" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/css/price-range.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/css/main.css" rel="stylesheet">
+    <link href="~/Content/css/responsive.css" rel="stylesheet">
+</head><!--/head-->
+<body>
+    <!--header-->
+    @RenderPage("~/Views/Shared/_Menu.cshtml")
+
+    <!--/header-->
+    <section id="slider">
+        <!--slider-->
+        <div class="container">
+            @RenderSection("slide", required: false)
+        </div>
+    </section><!--/slider-->
+    @*container*@
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="left-sidebar">
+                        @{Html.RenderAction("Category", "Home");}
+                        <!--/category-products-->
+
+                        <div class="brands_products">
+                            <!--Creator-->
+                            @{ Html.RenderAction("Creator", "Home");}
+
+                        </div><!--/Creator-->
+                        <div class="brands_products" style="margin-bottom: 20px;">
+                            <!--Producer-->
+                            @{ Html.RenderAction("Producer", "Home");}
+                        </div><!--/Producer-->
+
+                        
+                        <!--<div class="shipping text-center">-->
+                            <!--shipping-->
+                            <!--<img src="~/images/home/shipping.jpg" alt="" />
+                        </div>--><!--/shipping-->
+
+                    </div>
+                </div>
+                <div class="col-md-9 padding-right">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+    @RenderPage("~/Views/Shared/_Footer.cshtml")
+
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.prettyPhoto.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿@model List<Webbandohh.Models.Creator>
+<h2>TÁC GIẢ</h2>
+<div class="brands-name category-products">
+    <ul class="nav nav-pills nav-stacked">
+        @foreach (var item in Model)
+        {
+            <li><a href="/Item?search=@item.CreatorName">@item.CreatorName</a></li>
+        }
+        <li><a href=""> <span class="pull-right">(@ViewBag.CountCreator)</span>Xem thêm...</a></li>
+    </ul>
+</div>
+

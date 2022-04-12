@@ -1,0 +1,119 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hệ thống quản lý cơ sở dữ liệu | Admin</title>
+    <link rel="shortcut icon" href="~/images/icons8-delicious-32.png" />
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Areas/Admin/Contents/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="~/Areas/Admin/Contents/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Areas/Admin/Contents/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="~/Areas/Admin/Contents/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Admin/HomeAdmin/Index">Xin chào, @User.Identity.GetUserName()</a>
+
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Xin chào @User.Identity.GetUserName()</a>
+                        </li>
+                        <li class="divider"></li>
+
+                        @using (Html.BeginForm("LogOff", "Login", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a></li>
+                        }
+
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+
+                        <li>
+                            <a href="/Admin/HomeAdmin/Index"><i class="fa fa-dashboard fa-fw"></i> Bảng dữ liệu</a>
+                        </li>
+                        <li>
+                            <a href="/Admin/Category/Index"><i class="fa fa-table fa-fw"></i> Danh mục sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/Admin/Creator/Index"><i class="fa fa-table fa-fw"></i> Quản lý tác giả</a>
+                        </li>
+                        <li>
+                            <a href="/Admin/Producer/Index"><i class="fa fa-edit fa-fw"></i>Quản lý nơi sản xuất</a>
+                        </li>
+                        <li>
+                            <a href="/Admin/Item/Index"><i class="fa fa-wrench fa-fw"></i> Quản lý sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/Admin/Order/Index"><i class="fa fa-first-order"></i> Quản lý order</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        @*renderbody*@
+        <div id="page-wrapper">
+            @RenderBody()
+        </div>
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="~/Areas/Admin/Contents/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Areas/Admin/Contents/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/Areas/Admin/Contents/vendor/metisMenu/metisMenu.min.js"></script>
+
+
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Areas/Admin/Contents/dist/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

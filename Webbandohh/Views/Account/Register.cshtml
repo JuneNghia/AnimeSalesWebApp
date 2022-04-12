@@ -1,0 +1,26 @@
+﻿@model Webbandohh.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-5 col-sm-offset-3">
+    <div class="signup-form">
+        <!--sign up form-->
+        <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+        <form action="/Account/Register" method="post">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <input type="text" placeholder="Họ và tên" name="FullName" />
+            <input type="text" placeholder="Tên đăng nhập" name="UserName" />
+            <input type="email" placeholder="Địa chỉ Email" name="Email" />
+            <input type="password" placeholder="Mật khẩu" name="Password" />
+            <input type="password" placeholder="Nhập lại mật khẩu" name="ConfirmPassword" />
+            <button style="margin-top: 20px" type="submit" class="btn btn-default">Đăng ký</button>
+        </form>
+
+    </div>
+</div>
+
+

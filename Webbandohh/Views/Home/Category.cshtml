@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Webbandohh.Models.Category>
+<h2>lOẠI SẢN PHẨM</h2>
+<div class="panel-group category-products" id="accordian">
+    <!--category-productsr-->
+
+    @foreach (var item in Model)
+    {
+        <div class="panel panel-default nav nav-pills nav-stacked">
+            <div class="panel-heading">
+                <h4 class="panel-title" style="margin-left: 7px">
+                    <a href="/Item?search=@item.CateName">
+                        @item.CateName
+                    </a>
+                </h4>
+            </div>
+        </div>
+    }
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 style="margin-left: 7px" class="panel-title"><a href="#">Xem thêm...<span class="pull-right">(@ViewBag.CountCategory)</span></a></h4>
+        </div>
+    </div>
+</div>
+

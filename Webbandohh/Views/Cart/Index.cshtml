@@ -1,0 +1,93 @@
+﻿@model List<Webbandohh.Models.CartItem>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_MF.cshtml";
+}
+<style>
+    input.btn.btn-default {
+        width: 60px;
+    }
+</style>
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="/Home/Index">Home</a></li>
+                <li class="active">Shopping Cart</li>
+            </ol>
+        </div>
+        @if (Model.Count > 0)
+        {
+            <div class="table-responsive cart_info" style="margin-bottom:0">
+
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Item</td>
+                            <td class="description">Title</td>
+                            <td class="price">Price</td>
+                            <td class="quantity">Quantity</td>
+                            <td class="total">Total</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="row_ @item.Item.ItemId">
+                                <td class="cart_product">
+                                    <img src="~/images/@item.Item.ImgUrl" alt="@item.Item.ImgUrl" width="110">
+                                </td>
+                                <td class="cart_description">
+                                    <h4>@item.Item.Title</h4>
+                                    <p>@item.Item.Creator.CreatorName</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>@item.Item.Price VND</p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
+                                        <a class="cart_quantity_down" href="/add-cart?ItemId=@item.Item.ItemId&quantity=-1" id="quantity-down"> - </a>
+                                        <input class="cart_quantity_input" type="number" name="quantity" value="@item.Quantity" autocomplete="off" size="2" style="width:40px">
+                                        <a class="cart_quantity_up" href="/add-cart?ItemId=@item.Item.ItemId&quantity=1"> + </a>
+                                    </div>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">@(item.Item.Price * item.Quantity) VND</p>
+                                </td>
+                                <td class="cart_delete">
+                                    <a class="cart_quantity_delete" href="/delete-cart?id=@item.Item.ItemId"><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a href="/Cart/ThongTinKhachHang" class="btn btn-success">Thanh toán</a>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+
+        }
+        else
+        {
+            <h2>@ViewBag.Noti</h2>
+        }
+    </div>
+</section>
+
+
+

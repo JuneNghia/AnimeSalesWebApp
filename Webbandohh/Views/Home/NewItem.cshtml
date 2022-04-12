@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Webbandohh.Models.Item>
+
+<h2 class="title text-center">SẢN PHẨM MỚI</h2>
+@foreach (var item in Model)
+{
+    <div class="col-sm-4">
+        <div class="product-image-wrapper">
+            <div class="single-products">
+                <div class="productinfo text-center">
+                    <a href="/Home/ItemDetail/@item.ItemId"><img src="~/images/@item.ImgUrl" alt="" height="250" /></a>
+                    <h2>@String.Format("{0:0,0}", @item.Price) VND</h2>
+                    <a href="/Home/ItemDetail/@item.ItemId">
+                        <p>@item.Title</p>
+                    </a>
+                    <a href="/add-cart?ItemId=@item.ItemId&quantity=1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,82 @@
+﻿@using Webbandohh.Models
+@model PagedList.IPagedList<Producer>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Quản lý nơi sản xuất</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <a class="btn btn-info" href="/Admin/Producer/Create">Create new</a>
+    </div>
+    @using (Html.BeginForm("Index", "Producer", FormMethod.Get))
+    {
+        <div class="col-md-3" style="margin-bottom:0.5%;float:right">
+            <div class="input-group custom-search-form">
+                <input type="text" class="form-control" name="search" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="row" id="table">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Producer Name</th>
+                                <th>Description</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="row_@item.ProId">
+                                    <td>@item.ProId</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Description</td>
+                                    <td>
+                                        <a href="/Admin/Producer/Edit/@item.ProId">Edit</a> |
+                                        @Ajax.ActionLink("Delete", "Delete", new { @id = item.ProId }, new AjaxOptions
+                                   {
+                                       Confirm = "Are you sure want to delete this?",
+                                       OnComplete = "$('#row_" + item.ProId + "').remove()",
+                                       HttpMethod = "Delete"
+                                   })
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                    <div style="text-align:center">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @search = @ViewBag.search }))
+                    </div>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+</div>
+

@@ -1,0 +1,88 @@
+﻿@model Webbandohh.Models.Item
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    button.btn.btn-fefault.cart {
+        margin-left: 0;
+        margin-bottom: 0;
+    }
+
+    .product-information {
+        padding-top: 0;
+        padding-left: 20px;
+    }
+</style>
+<div class="product-details">
+    <!--product-details-->
+    <div class="col-md-5">
+        <div class="view-product">
+            <img src="~/images/@Model.ImgUrl" alt="" />
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="product-information">
+            <!--/product-information-->
+            <h2>@Model.Title</h2>
+            <p>@Model.Creator.CreatorName</p>
+
+            <span>
+                <span>@Model.Price VND</span>
+                <br />
+                <label>Quantity:</label>
+                <input type="number" value="1" min="1" />
+            </span>
+            <p>
+                <b>
+                    Availability: @if (Model.IsActive == true)
+                    {
+                        <b>Còn hàng</b>
+                    }
+                    else
+                    {
+                        <b>Hết hàng</b>
+                    }
+
+                </b>
+            </p>
+            <p><b>Category:</b> @Model.Category.CateName</p>
+            <p><b>Publisher:</b> @Model.Producer.Name</p>
+            <a href="/add-cart?ItemId=@Model.ItemId&quantity=1" class="btn btn-fefault cart">
+                <i class="fa fa-shopping-cart"></i>
+                Add to cart
+            </a>
+
+        </div><!--/product-information-->
+    </div>
+</div>
+<h2 class="title text-center">Summary</h2>
+
+<div class="col-md-12">
+    @Html.Raw(Model.Summary)
+</div>
+
+
+<!--Comment-->
+<h2 class="title text-center">Comment</h2>
+<div class="col-md-12">
+    List Comment
+    @*@{ Html.RenderAction("Index", "Comment", new { id = Model.ItemId });}*@
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="~/images/home/user-default.png" style="width:100%;height:100px" />
+        </div>
+        <div class="col-md-9">
+            @using (Html.BeginForm("Insert", "Comment", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.ItemId)
+                <textarea class="form-control-feedback" spellcheck="true" placeholder="Phản hồi...  " name="Content"></textarea>
+                <button type="submit" class="btn btn-success col-xs-offset-10" style="margin-top:10px">Gửi phản hồi</button>
+            }
+
+        </div>
+
+    </div>
+</div>
+

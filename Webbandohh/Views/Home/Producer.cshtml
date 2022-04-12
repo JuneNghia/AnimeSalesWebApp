@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Webbandohh.Models.Producer>
+<h2>THƯƠNG HIỆU</h2>
+<div class="brands-name">
+    <ul class="nav nav-pills nav-stacked">
+        @foreach (var item in Model)
+        {
+            <li><a href="/Item?search=@item.Name">@item.Name</a></li>
+        }
+        <li><a href="#"> <span class="pull-right">(@ViewBag.CountProducer)</span>Xem thêm...</a></li>
+    </ul>
+</div>
+
